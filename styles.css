@@ -212,6 +212,7 @@ footer {
 }
 
 .section-title-contacto-h2 {
+    margin-top: 20%;
     text-align: center;
     color: var(--color-texto);
 }
