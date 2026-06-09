@@ -211,6 +211,16 @@ footer {
     text-align: center;
 }
 
+.section-title-contacto-h2 {
+    text-align: center;
+    color: var(--color-texto);
+}
+
+.section-title-contacto-h3 {
+    text-align: center;
+    color: var(--complemento);
+}
+
 
 
 
