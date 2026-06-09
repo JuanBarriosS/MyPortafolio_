@@ -267,12 +267,10 @@ footer {
 }
 
 .section-title-contacto-mienfoque {
-    text-align: center;
+    text-align: none;
 }
 
-.section-content-contacto-mienfoque {
-    display: none;
-}
+
 
 
 
@@ -524,6 +522,24 @@ footer {
     background-color: var(--complemento);
     border-radius: 2px;
 }
+
+.section-title-contacto-mienfoque-dos{
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.section-title-contacto-mienfoque-dos::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--complemento);
+    border-radius: 2px;
+}
+
 .section-content-contacto-mienfoque {
     color: var(--color-dos);
     font-size: 0.9rem;
