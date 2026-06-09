@@ -253,7 +253,8 @@ footer {
     display: block;
     font-size: 0.7rem;
     letter-spacing: 0.1em;
-    color: var(--color-texto);
+    color: rgb(32, 30, 30);
+    
     
 }
 
@@ -261,7 +262,7 @@ footer {
     display: block;
     font-size: 1.1rem;
     font-weight: bold;
-    color: rgb(32, 30, 30);
+    color: var(--color-texto);
 }
 
 
