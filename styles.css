@@ -247,13 +247,14 @@ footer {
     border: 1px solid #222;
     border-radius: 8px;
     margin-top: 5%;
+    background-color: rgb(32, 30, 30);
 }
 
 .contacto-label {
     display: block;
     font-size: 0.7rem;
     letter-spacing: 0.1em;
-    color: rgb(32, 30, 30);
+    color: white;
     
     
 }
