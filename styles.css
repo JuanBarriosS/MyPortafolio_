@@ -215,11 +215,13 @@ footer {
     margin-top: 20%;
     text-align: center;
     color: black;
+    font-weight: bold;
 }
 
 .section-title-contacto-h3 {
     text-align: center;
-    color: var(--color-texto);
+    color: black;
+    font-weight: bold;
 }
 
 .contacto-item {
