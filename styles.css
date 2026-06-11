@@ -736,6 +736,9 @@ footer {
 
     }
     .section-habilidades-tecnicas {
+        background-image: url('assets/backgroundHabi.png');
+        background-size: cover;
+        background-position: center;
         padding: 40px;
     }
     .titulo-principal-habilidades {
@@ -801,7 +804,9 @@ footer {
         padding: 15px 20px;
         border: 1px solid #53c26b;
         border-radius: 8px;
-        background-color: #07831c0a;
+        background-color: #000000e3;
+        height: 373px;
+        overflow: hidden;
     }
 
     .lenguajes-atributos {
@@ -839,7 +844,9 @@ footer {
         padding: 15px 20px;
         border: 1px solid #53c26b;
         border-radius: 8px;
-        background-color: #07831c0a;
+        background-color: #000000e3;
+        height: 373px;
+        overflow: hidden;
     }
 
     
@@ -884,7 +891,9 @@ footer {
         padding: 15px 20px;
         border: 1px solid #53c26b;
         border-radius: 8px;
-        background-color: #07831c0a;
+        background-color: #000000e3;
+        height: 373px;
+        overflow: hidden;
     }
     .titulo-frameworks {
         border-bottom: 1px solid #333;
@@ -918,20 +927,23 @@ footer {
     .div-so {
         display: flex;
         flex-direction: column;
-        align-items: left;
-        gap: 15px;
+        row-gap: 0;
         margin-bottom: 15px;
         padding: 15px 20px;
         border: 1px solid #53c26b;
         border-radius: 8px;
-        background-color: #07831c0a;
+        background-color: #000000e3;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding-top: 20px;
+        height: 373px;
+        overflow: hidden;
     }
     .titulo-so {
         border-bottom: 1px solid #333;
         padding-bottom: 10px;
-        margin-bottom: 10px;
         font-size: medium;
         width: 100%;
     }
@@ -965,12 +977,12 @@ footer {
         border-bottom: none;
     }
     .imgWindows {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
     .imgLinux {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
 
     .contenido-interno-habilidades{
@@ -991,7 +1003,58 @@ footer {
     .class-so img {
     width: 80px;
     height: 80px;
-}
+    }
+
+    .lenguajes-atributos::after,
+    .class-frameworks::after,
+    .class-base::after {
+        content: '•';
+        margin-left: auto;
+        color: var(--complemento);
+        font-size: 0.8rem;
+    }
+
+    .lenguajes-atributos,
+    .class-frameworks,
+    .class-base {
+        padding: 12px 0;
+    }
+
+    .cssAndReact {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        border-bottom: none;
+        gap: 40px;
+        
+    }
+
+    .cssAndReact img {
+        width: 40px;
+        height: 40px;
+        }
+
+    .cssAndReact .class-frameworks::after {
+        content: none;
+    }   
+
+    .nav-link-a-habilidades {
+        text-decoration: none;
+        color: var(--complemento);
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+
+    .nav-link-a-acercami{
+        text-decoration: none;
+        color: var(--complemento);
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+    
+    
     
 
 }
