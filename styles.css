@@ -756,7 +756,7 @@ footer {
     .certificados-section {
         display: flex; background-image: url(assets/backgroundCert.png);
         background-size: cover; background-position: center;
-        min-height: 100vh; flex-direction: column; align-items: center; padding-top: 50px;
+        min-height: 90vh; flex-direction: column; align-items: center; padding-top: 50px;
     }
 
     .div-span-certificaciones { display: flex; align-items: center; justify-content: center; gap: 10px; }
