@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Certificados</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navegacion">
+            <div>
+                <i class="bi bi-code-slash"></i>
+                <h1 class="subtitle" href="index.html">  Juan Barrios</h1>
+            </div>
+            <label for="menu" class="menu-icon">
+                <i class="bi bi-list"></i>
+            </label>
+            <input type="checkbox" id="menu" class="input-menu">
+            <ul class="nav-list-ul">
+                <li class="nav-list-li"><a class="nav-link-a" href="index.html">Acerca de mi</a></li>
+                <li class="nav-list-li"><a class="nav-link-a" href="/habilidades.html">Habilidades</a></li>
+                <li class="nav-list-li"><a class="nav-link-a" href="#proyectos">Proyectos</a></li>
+                <li class="nav-list-li"><a class="nav-link-a-certificados" href="certificados.html">Certificados</a></li>
+            </ul>
+        </nav>    
+    </header>
+    <main class="main-certificados">
+        <section class="certificados-section">
+            <div class="div-span-certificaciones">
+                <span class="span-certifiaciones">Mis certificaciones</span>
+            </div>
+            <br><br>
+            <div class="div-titulo-certificaciones">
+                <h1 class="titulo-certificaciones">Certificaciones</h1>
+            </div>
+            <div class="slider-certificados">
+                <button class="slider-btn slider-prev"><i class="bi bi-chevron-left"></i></button>
+                
+                <div class="slider-contenido">
+                    <div class="certificado-card">
+                        <!-- Canvas donde PDF.js dibuja el PDF como imagen limpia -->
+                        <canvas id="cert-canvas" style="width:100%; border-radius:8px; border:1px solid #333;"></canvas>
+                        <div id="cert-loading" style="text-align:center; padding:40px; color:#888; display:none;">
+                            Cargando certificado...
+                        </div>
+                        <div class="cert-info">
+                            <div class="cert-item">
+                                <i class="bi bi-mortarboard"></i>
+                                <div>
+                                    <span class="cert-label">Curso</span>
+                                    <span class="cert-valor"></span>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <i class="bi bi-bank"></i>
+                                <div>
+                                    <span class="cert-label">Institución</span>
+                                    <span class="cert-valor"></span>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <i class="bi bi-calendar"></i>
+                                <div>
+                                    <span class="cert-label">Fecha</span>
+                                    <span class="cert-valor"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-ver-cert" target="_blank">
+                            <i class="bi bi-box-arrow-up-right"></i> Ver certificado completo
+                        </a>
+                    </div>
+                </div>
+
+                <button class="slider-btn slider-next"><i class="bi bi-chevron-right"></i></button>
+            </div>
+
+            <!-- Dots generados automáticamente -->
+            <div class="slider-dots"></div>
+
+        </section>
+    </main>
+
+    <!-- PDF.js desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        const certificados = [
+            {
+                pdf: 'assets/certif/certf1.pdf',
+                curso: 'Introduction to Cybersecurity',
+                institucion: 'Cisco Networking Academy',
+                fecha: 'Febrero 22, 2025'
+            },
+            {
+                pdf: 'assets/certif/certf2.pdf',
+                curso: 'Fortalicimiento en razonamiento cuantitativo',
+                institucion: 'SENA',
+                fecha: 'Noviembre 6, 2019'
+            },
+            {
+                pdf: 'assets/certif/certf3.pdf',
+                curso: 'Primeros auxilios',
+                institucion: 'SENA',
+                fecha: 'Noviembre 13, 2018'
+            },
+            {
+                pdf: 'assets/certif/certf4.pdf',
+                curso: 'Contabilidad basica',
+                institucion: 'SENA',
+                fecha: 'Octubre 17, 2019'
+            },
+            {
+                pdf: 'assets/certif/certf5.pdf',
+                curso: 'Conceptos basicos de redes',
+                institucion: 'Cisco Networking Academy',
+                fecha: 'Mayo 14, 2026'
+            },
+            {
+                pdf: 'assets/certif/certf6.pdf',
+                curso: 'Salud ocupacional',
+                institucion: 'SENA',
+                fecha: 'Noviembre 13, 2018 '
+            },
+            {
+                pdf: 'assets/certif/certf7.pdf',
+                curso: 'Planeacion estrategica de logistica',
+                institucion: 'SENA',
+                fecha: 'Agosto 24, 2019'
+            },
+            {
+                pdf: 'assets/certif/certf8.pdf',
+                curso: 'Desarrollo de la operacion de importacion y exportacion',
+                institucion: 'SENA',
+                fecha: 'Agosto 7, 2019'
+            }
+            ,
+            {
+                pdf: 'assets/certif/certf9.pdf',
+                curso: 'Operating systems basics',
+                institucion: 'Cisco Networking Academy',
+                fecha: 'Marzo 22, 2026'
+            }
+        ];
+
+        let actual = 0;
+
+        // Genera los dots automáticamente
+        const dotsContainer = document.querySelector('.slider-dots');
+        dotsContainer.innerHTML = certificados.map((_, i) =>
+            `<span class="dot ${i === 0 ? 'active' : ''}"></span>`
+        ).join('');
+
+        // Renderiza la primera página del PDF en el canvas (sin barra del visor)
+        async function renderPDF(pdfUrl) {
+            const canvas = document.getElementById('cert-canvas');
+            const loading = document.getElementById('cert-loading');
+
+            canvas.style.display = 'none';
+            loading.style.display = 'block';
+
+            try {
+                const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+                const page = await pdf.getPage(1);
+
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                await page.render({
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport
+                }).promise;
+
+                loading.style.display = 'none';
+                canvas.style.display = 'block';
+            } catch (e) {
+                loading.textContent = 'No se pudo cargar el certificado.';
+            }
+        }
+
+        function renderCert(index) {
+            const c = certificados[index];
+            renderPDF(c.pdf);
+            document.querySelectorAll('.cert-valor')[0].textContent = c.curso;
+            document.querySelectorAll('.cert-valor')[1].textContent = c.institucion;
+            document.querySelectorAll('.cert-valor')[2].textContent = c.fecha;
+            document.querySelector('.btn-ver-cert').href = c.pdf;
+            document.querySelectorAll('.dot').forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+        }
+
+        // Carga el primer certificado al abrir la página
+        renderCert(0);
+
+        document.querySelector('.slider-prev').addEventListener('click', () => {
+            actual = (actual - 1 + certificados.length) % certificados.length;
+            renderCert(actual);
+        });
+
+        document.querySelector('.slider-next').addEventListener('click', () => {
+            actual = (actual + 1) % certificados.length;
+            renderCert(actual);
+        });
+
+        dotsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                actual = [...dotsContainer.children].indexOf(e.target);
+                renderCert(actual);
+            }
+        });
+    </script>
+</body>
+</html>
